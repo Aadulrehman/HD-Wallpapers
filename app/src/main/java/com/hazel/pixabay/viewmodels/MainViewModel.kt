@@ -9,13 +9,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val pixabayRepository: PixabayRepository):ViewModel() {
-
+    private var pageNo=1
     init {
+        fetchImages()
+    }
+    fun onNextButtonClick() {
+        pageNo++
+        fetchImages()
+    }
+
+    private fun fetchImages(){
         viewModelScope.launch(Dispatchers.IO){
-            pixabayRepository.getImages("39753212-16e407a474df1977842acb508")
+            pixabayRepository.getImages("39753212-16e407a474df1977842acb508",pageNo)
         }
     }
 
     val images:LiveData<PixabayList>
     get() = pixabayRepository.images
+
 }

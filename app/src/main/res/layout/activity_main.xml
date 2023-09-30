@@ -12,11 +12,40 @@
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HD Wallpapers"
+                android:textSize="30dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/onadia"/>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:layout_marginLeft="20dp"
+                android:text="Next Page"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"/>
 

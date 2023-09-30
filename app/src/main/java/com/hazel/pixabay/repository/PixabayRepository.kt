@@ -11,8 +11,8 @@ class PixabayRepository(private val pixabayService: PixabayService) {
     val images: LiveData<PixabayList>
     get()=imagesLiveData
 
-    suspend fun getImages(apiKey:String){
-        val result=pixabayService.getImages(apiKey)
+    suspend fun getImages(apiKey:String, page:Int){
+        val result=pixabayService.getImages(apiKey,page)
         if(result?.body()!=null){
             imagesLiveData.postValue(result.body())
 

@@ -1,5 +1,6 @@
 package com.hazel.pixabay.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,14 +36,26 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel=ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
 
-
         recyclerView=binding.recyclerview
         recyclerView.layoutManager= GridLayoutManager(this,2)
 
         mainViewModel.images.observe(this, Observer {
             val adapter = galleryAdapter(it.hits as ArrayList<Hit>)
             recyclerView.adapter = adapter
+
+            adapter.setOnItemClickListener(object : galleryAdapter.OnItemClickListener {
+                override fun onItemClick(hit: Hit) {
+                    val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                    intent.putExtra("HitData", hit)
+                    startActivity(intent)
+                }
+            })
            // Log.d("MYDATA",it.hits.toString())
         })
+
+        binding.btnNext.setOnClickListener{
+            mainViewModel.onNextButtonClick()
+        }
+
     }
 }
