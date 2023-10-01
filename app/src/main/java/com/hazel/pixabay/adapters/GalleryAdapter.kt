@@ -1,9 +1,7 @@
-package com.hazel.pixabay
+package com.hazel.pixabay.adapters
 
-import android.location.GnssAntennaInfo.Listener
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.hazel.pixabay.databinding.GalleryLayoutBinding
 import com.hazel.pixabay.models.Hit
@@ -11,7 +9,7 @@ import com.squareup.picasso.Picasso
 
 class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<galleryAdapter.ViewHolder>() {
 
-    private var listener:OnItemClickListener?=null
+    private var listener: OnItemClickListener?=null
 
     interface OnItemClickListener{
         fun onItemClick(hit: Hit)
