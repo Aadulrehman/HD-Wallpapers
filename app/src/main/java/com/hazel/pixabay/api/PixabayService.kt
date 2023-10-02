@@ -9,5 +9,4 @@ interface PixabayService {
 
     @GET("/api/")
     suspend fun getImages(@Query("key") apiKey: String,@Query("page") page: Int):Response<PixabayList>
-
 }

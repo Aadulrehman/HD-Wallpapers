@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hazel.pixabay.HitApplication
 import com.hazel.pixabay.R
 import com.hazel.pixabay.api.PixabayService
 import com.hazel.pixabay.api.RetrofitHelper
@@ -29,8 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val pixabayService=RetrofitHelper.getInstance().create(PixabayService::class.java)
-        val repository=PixabayRepository(pixabayService)
+        val repository=(application as HitApplication).pixabayRepository
 
         mainViewModel=ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
 

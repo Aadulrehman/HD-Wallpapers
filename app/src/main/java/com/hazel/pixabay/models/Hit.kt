@@ -1,6 +1,12 @@
 package com.hazel.pixabay.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "hit")
 data class Hit(
+    @PrimaryKey(autoGenerate = true)
+    val hitId:Int,
     val collections: Int,
     val comments: Int,
     val downloads: Int,
