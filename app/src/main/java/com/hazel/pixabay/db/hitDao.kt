@@ -12,4 +12,7 @@ interface hitDao {
 
     @Query("SELECT * FROM hit")
     suspend fun getHits():List<Hit>
+
+    @Query("DELETE FROM hit")
+    suspend fun deleteAll()
 }

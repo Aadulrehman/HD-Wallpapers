@@ -6,15 +6,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".HitApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".HitApplication"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pixabay"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.FavouriteActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.DetailsActivity"
             android:exported="false" />

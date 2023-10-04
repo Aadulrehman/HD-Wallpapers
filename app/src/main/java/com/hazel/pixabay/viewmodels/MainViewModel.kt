@@ -1,8 +1,12 @@
 package com.hazel.pixabay.viewmodels
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hazel.pixabay.models.FavouriteList
+import com.hazel.pixabay.models.Hit
 import com.hazel.pixabay.models.PixabayList
 import com.hazel.pixabay.repository.PixabayRepository
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +20,27 @@ class MainViewModel(private val pixabayRepository: PixabayRepository):ViewModel(
     fun onNextButtonClick() {
         pageNo++
         fetchImages()
+    }
+    fun insertFav(hit: Hit){
+        val newFav=FavouriteList(0,hit.comments,hit.downloads,hit.hitId,hit.id,hit.largeImageURL,hit.likes,hit.tags,hit.views,hit.webformatURL)
+        viewModelScope.launch (Dispatchers.IO){
+            val exists=pixabayRepository.getFavoriteByHitId(hit.id)
+            if(exists==null){
+                pixabayRepository.insertFav(newFav)
+            }
+            else{
+               // deleteFav(pixabayRepository.getFavoriteByHitId(hit.id)!!.favId)
+            }
+        }
+    }
+
+    fun getFavourites():LiveData<List<FavouriteList>>{
+        return pixabayRepository.getFav()
+    }
+    fun deleteFav(favId:Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            pixabayRepository.deleteFav(favId)
+        }
     }
 
     private fun fetchImages(){

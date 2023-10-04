@@ -3,6 +3,7 @@ package com.hazel.pixabay.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val repository=(application as HitApplication).pixabayRepository
-
         mainViewModel=ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
 
         recyclerView=binding.recyclerview
@@ -48,11 +48,21 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             })
+
+            adapter.setOnFavClickListener(object: galleryAdapter.FavButtonClickListener{
+                override fun onFavButtonClick(hit: Hit) {
+                    mainViewModel.insertFav(hit)
+                }
+            })
            // Log.d("MYDATA",it.hits.toString())
         })
 
         binding.btnNext.setOnClickListener{
             mainViewModel.onNextButtonClick()
+        }
+        binding.btnFav.setOnClickListener {
+            val intent = Intent(this@MainActivity, FavouriteActivity::class.java)
+            startActivity(intent)
         }
 
     }

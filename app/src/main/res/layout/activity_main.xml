@@ -29,14 +29,23 @@
                 android:fontFamily="@font/onadia"/>
 
             <Button
-                android:id="@+id/btnNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btnFav"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/baseline_favorite_24"
+                android:layout_marginLeft="73dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/purple_200"
-                android:layout_marginLeft="20dp"
-                android:text="Next Page"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/white"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_marginTop="9dp"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/purple_200"
                 tools:ignore="MissingConstraints" />
 
         </LinearLayout>
