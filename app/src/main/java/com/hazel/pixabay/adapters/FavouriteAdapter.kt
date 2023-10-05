@@ -3,6 +3,7 @@ package com.hazel.pixabay.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hazel.pixabay.R
 import com.hazel.pixabay.databinding.FavouriteLayoutBinding
 import com.hazel.pixabay.models.FavouriteList
 import com.hazel.pixabay.models.Hit
@@ -17,7 +18,6 @@ class FavouriteAdapter(private val dataList: ArrayList<FavouriteList>): Recycler
     fun setOnFavClickListener(listener: FavouriteAdapter.FavButtonClickListener) {
         favBtnListener= listener
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = FavouriteLayoutBinding.inflate(inflater,parent,false)

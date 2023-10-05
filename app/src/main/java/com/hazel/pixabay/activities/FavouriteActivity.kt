@@ -42,9 +42,7 @@ class FavouriteActivity : AppCompatActivity() {
                     mainViewModel.deleteFav(item.favId)
                     Toast.makeText(this@FavouriteActivity,"Delete",Toast.LENGTH_SHORT).show()
                 }
-
             })
         })
-
     }
 }

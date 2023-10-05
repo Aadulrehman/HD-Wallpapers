@@ -22,11 +22,7 @@ class DetailsActivity : AppCompatActivity() {
     }
     private fun setData(){
         val data = intent.getSerializableExtra("HitData") as Hit
-        binding.tvComments.text=data.comments.toString()
-        binding.tvDownloads.text=data.downloads.toString()
-        binding.tvViews.text=data.views.toString()
-        binding.tvLikes.text=data.likes.toString()
-        binding.tvTags.text=data.tags
-        Picasso.get().load(data.largeImageURL).into(binding.ivImage)
+          binding.hit=data
+          Picasso.get().load(data.largeImageURL).into(binding.ivImage)
     }
 }

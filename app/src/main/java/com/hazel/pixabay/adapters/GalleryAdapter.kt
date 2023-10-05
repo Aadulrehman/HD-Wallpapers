@@ -3,6 +3,7 @@ package com.hazel.pixabay.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hazel.pixabay.R
 import com.hazel.pixabay.databinding.GalleryLayoutBinding
 import com.hazel.pixabay.models.Hit
 import com.squareup.picasso.Picasso
@@ -51,6 +52,7 @@ class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<
 
             binding.ivFav.setOnClickListener{
                 favBtnListener?.onFavButtonClick(item)
+                binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
             }
         }
     }
