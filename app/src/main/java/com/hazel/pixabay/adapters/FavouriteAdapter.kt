@@ -12,9 +12,11 @@ import com.squareup.picasso.Picasso
 class FavouriteAdapter(private val dataList: ArrayList<FavouriteList>): RecyclerView.Adapter<FavouriteAdapter.ViewHolder>() {
 
     private var favBtnListener: FavouriteAdapter.FavButtonClickListener? = null
+
     interface FavButtonClickListener {
         fun onFavButtonClick(item: FavouriteList)
     }
+
     fun setOnFavClickListener(listener: FavouriteAdapter.FavButtonClickListener) {
         favBtnListener= listener
     }
@@ -31,6 +33,7 @@ class FavouriteAdapter(private val dataList: ArrayList<FavouriteList>): Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem=dataList[position]
         holder.bind(currentItem)
+
     }
 
     inner class ViewHolder(private val binding: FavouriteLayoutBinding) :RecyclerView.ViewHolder(binding.root) {

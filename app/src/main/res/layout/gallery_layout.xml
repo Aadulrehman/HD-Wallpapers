@@ -13,20 +13,70 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
-        <ImageView
-            android:id="@+id/ivImage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:background="@color/black" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivFav"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="6dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/baseline_favorite_border_24"/>
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                android:background="@color/white" />
+
+            <ImageButton
+                android:id="@+id/ivFav"
+                android:layout_width="40dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="6dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:src="@drawable/baseline_favorite_border_24"
+                android:clickable="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivImage"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivLike"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/baseline_thumb_up_24"/>
+
+                <TextView
+                    android:id="@+id/tvLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:text="12"/>
+
+                <ImageView
+                    android:id="@+id/ivComment"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/baseline_comment_24"/>
+
+                <TextView
+                    android:id="@+id/tvComments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:text="12"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
 
     </androidx.cardview.widget.CardView>
 </layout>

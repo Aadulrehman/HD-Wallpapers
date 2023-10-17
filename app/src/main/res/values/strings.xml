@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Pixabay</string>
+    <string-array name="category_list">
+        <item>backgrounds</item>
+        <item>fashion</item>
+        <item>nature</item>
+        <item>science</item>
+        <item>health</item>
+        <item>places</item>
+        <item>animals</item>
+        <item>food</item>
+        <item>sports</item>
+        <item>travel</item>
+        <item>music</item>
+    </string-array>
+
+    <dimen name="textview_spacing">14dp</dimen>
+    <dimen name="textview_text_size">4.5sp</dimen>
 </resources>

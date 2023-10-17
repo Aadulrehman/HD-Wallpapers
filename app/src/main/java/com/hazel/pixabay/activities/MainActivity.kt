@@ -3,7 +3,8 @@ package com.hazel.pixabay.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,26 +12,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hazel.pixabay.HitApplication
 import com.hazel.pixabay.R
-import com.hazel.pixabay.api.PixabayService
-import com.hazel.pixabay.api.RetrofitHelper
 import com.hazel.pixabay.databinding.ActivityMainBinding
 import com.hazel.pixabay.adapters.galleryAdapter
+import com.hazel.pixabay.models.FavouriteList
 import com.hazel.pixabay.models.Hit
-import com.hazel.pixabay.repository.PixabayRepository
 import com.hazel.pixabay.viewmodels.MainViewModel
 import com.hazel.pixabay.viewmodels.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-
     lateinit var mainViewModel: MainViewModel
     lateinit var binding:ActivityMainBinding
     private lateinit var recyclerView: RecyclerView
+    private var selectedButton: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         val repository=(application as HitApplication).pixabayRepository
         mainViewModel=ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
 
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager= GridLayoutManager(this,2)
 
         mainViewModel.images.observe(this, Observer {
-            val adapter = galleryAdapter(it.hits as ArrayList<Hit>)
+            val adapter = galleryAdapter(it.hits as ArrayList<Hit>,mainViewModel)
             recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : galleryAdapter.OnItemClickListener {
@@ -48,22 +47,48 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             })
-
             adapter.setOnFavClickListener(object: galleryAdapter.FavButtonClickListener{
                 override fun onFavButtonClick(hit: Hit) {
                     mainViewModel.insertFav(hit)
                 }
             })
-           // Log.d("MYDATA",it.hits.toString())
         })
-
         binding.btnNext.setOnClickListener{
             mainViewModel.onNextButtonClick()
         }
+
         binding.btnFav.setOnClickListener {
             val intent = Intent(this@MainActivity, FavouriteActivity::class.java)
             startActivity(intent)
+            selectedButton?.setBackgroundResource(R.drawable.button_not_selected)
         }
 
+        showCategories()
+
     }
+
+    private fun showCategories(){
+        val categoryArray = resources.getStringArray(R.array.category_list)
+        for (i in 1..10) {
+            val textBtn = TextView(this)
+            textBtn.text = categoryArray[i].toUpperCase()
+            textBtn.setPadding(20, 20, 20, 20)
+            textBtn.setTextSize(resources.getDimension(R.dimen.textview_text_size))
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.setMargins(resources.getDimensionPixelSize(R.dimen.textview_spacing), 0, 0, 0)
+            textBtn.setBackgroundResource(R.drawable.button_not_selected)
+            textBtn.setOnClickListener {
+                mainViewModel.setCategory(categoryArray[i])
+                selectButton(textBtn)
+            }
+            binding.buttonContainer.addView(textBtn,params)
+        }
+    }
+
+    private fun selectButton(button: TextView) {
+        selectedButton?.setBackgroundResource(R.drawable.button_not_selected)
+        button.setBackgroundResource(R.drawable.button_selected)
+        selectedButton = button
+    }
+
 }

@@ -16,9 +16,9 @@ class PixabayRepository(private val pixabayService: PixabayService, private val 
     val images: LiveData<PixabayList>
     get()=imagesLiveData
 
-    suspend fun getImages(apiKey:String, page:Int){
+    suspend fun getImages(apiKey:String, page:Int, category: String){
         if(NetworkUtils.isInternetAvailable(applicationContext)){
-            val result=pixabayService.getImages(apiKey,page)
+            val result=pixabayService.getImages(apiKey,page,category)
             if(result?.body()!=null){
                 hitDatabase.hitDao().deleteAll()
                 hitDatabase.hitDao().addHits(result.body()!!.hits)

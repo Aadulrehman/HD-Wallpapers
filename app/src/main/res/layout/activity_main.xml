@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".activities.MainActivity">
 
         <LinearLayout
@@ -25,7 +26,7 @@
                 android:textSize="30dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="15dp"
-                android:textColor="@color/purple_200"
+                android:textColor="@color/black"
                 android:fontFamily="@font/onadia"/>
 
             <Button
@@ -47,6 +48,27 @@
                 android:layout_marginLeft="10dp"
                 android:backgroundTint="@color/purple_200"
                 tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <HorizontalScrollView
+                android:layout_marginTop="65dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:id="@+id/buttonContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
 
@@ -54,7 +76,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="110dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"/>
 

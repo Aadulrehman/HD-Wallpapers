@@ -20,4 +20,5 @@ interface favouritesDao {
 
     @Query("SELECT * FROM favData WHERE id = :id")
     suspend fun getFavoriteByHitId(id: Int): FavouriteList?
+
 }
