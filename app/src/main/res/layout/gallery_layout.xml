@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="hit"
+            type="com.hazel.pixabay.models.Hit" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -55,7 +57,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
-                    android:text="12"/>
+                    android:text="@{String.valueOf(hit.likes)}"/>
 
                 <ImageView
                     android:id="@+id/ivComment"
@@ -72,7 +74,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
-                    android:text="12"/>
+                    android:text="@{String.valueOf(hit.comments)}"/>
 
             </LinearLayout>
         </RelativeLayout>

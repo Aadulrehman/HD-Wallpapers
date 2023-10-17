@@ -56,38 +56,26 @@ class galleryAdapter(private val dataList: ArrayList<Hit>, private val viewModel
     inner class ViewHolder(private val binding: GalleryLayoutBinding) :RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Hit, position: Int) {
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val isFav=viewModel.findFavById(item.id)
-                withContext(Dispatchers.Main){
-                    if(isFav!=null){
-                        binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
-                    }
-                    else{
-                        binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
-                    }
-                }
-            }
+            setFavBtn(item.id)
 
-            Picasso.get()
-                .load(item.webformatURL)
-                .into(binding.ivImage)
-            binding.tvLikes.text= item.likes.toString()
-            binding.tvComments.text=item.comments.toString()
+            Picasso.get().load(item.webformatURL).into(binding.ivImage)
+            binding.hit=item
 
             binding.ivFav.setOnClickListener{
                 favBtnListener?.onFavButtonClick(item)
-                CoroutineScope(Dispatchers.IO).launch {
-                    val isFav=viewModel.findFavById(item.id)
-                    withContext(Dispatchers.Main){
-                        if(isFav!=null){
-                            binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
-                        }
-                        else{
-                            binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
-                        }
-                    }
-                }
+                setFavBtn(item.id)
                 notifyItemChanged(position)
+            }
+        }
+
+        private fun setFavBtn(id:Int){
+            CoroutineScope(Dispatchers.IO).launch {
+                val isFav=viewModel.findFavById(id)
+                withContext(Dispatchers.Main){
+                    isFav?.let {
+                        binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
+                    } ?: binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                }
             }
         }
     }
