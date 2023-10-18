@@ -1,6 +1,7 @@
 package com.hazel.pixabay.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
@@ -10,6 +11,7 @@ import com.hazel.pixabay.databinding.GalleryLayoutBinding
 import com.hazel.pixabay.models.FavouriteList
 import com.hazel.pixabay.models.Hit
 import com.hazel.pixabay.viewmodels.MainViewModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,7 +57,22 @@ class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<
     inner class ViewHolder(private val binding: GalleryLayoutBinding) :RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Hit) {
 
-            Picasso.get().load(item.webformatURL).into(binding.ivImage)
+            binding.shimmerView.startShimmer()
+            binding.ivImage.visibility = View.GONE
+            binding.shimmerView.visibility = View.VISIBLE
+
+            Picasso.get().load(item.webformatURL).into(binding.ivImage, object : Callback {
+                override fun onSuccess() {
+                    binding.shimmerView.stopShimmer()
+                    binding.shimmerView.visibility = View.GONE
+                    binding.ivImage.visibility = View.VISIBLE
+                }
+                override fun onError(e: Exception?) {
+                    binding.shimmerView.stopShimmer()
+                    binding.shimmerView.visibility = View.GONE
+                    binding.ivImage.visibility = View.VISIBLE
+                }
+            })
             binding.hit=item
             setFavButton(item)
 
