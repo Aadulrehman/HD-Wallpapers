@@ -1,5 +1,6 @@
 package com.hazel.pixabay.viewmodels
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,15 +23,17 @@ class MainViewModel(private val pixabayRepository: PixabayRepository):ViewModel(
     }
     fun insertFav(hit: Hit){
         val newFav=FavouriteList(0,hit.comments,hit.downloads,hit.hitId,hit.id,hit.largeImageURL,hit.likes,hit.tags,hit.views,hit.webformatURL)
-        viewModelScope.launch (Dispatchers.IO){
-            val exists=pixabayRepository.getFavoriteByHitId(hit.id)
-            if(exists==null){
+        viewModelScope.launch(Dispatchers.IO) {
+            if(hit.isFav) {
                 pixabayRepository.insertFav(newFav)
             }
             else{
-               deleteFav(pixabayRepository.getFavoriteByHitId(hit.id)!!.favId)
+                deleteFav(pixabayRepository.getFavoriteByHitId(hit.id)!!.favId)
             }
         }
+    }
+    fun setFav(id:Int){
+        pixabayRepository.setFavHit(id)
     }
 
     fun getFavourites():LiveData<List<FavouriteList>>{
@@ -41,18 +44,15 @@ class MainViewModel(private val pixabayRepository: PixabayRepository):ViewModel(
             pixabayRepository.deleteFav(favId)
         }
     }
-    suspend fun findFavById(hitId:Int):FavouriteList?{
-        return pixabayRepository.getFavoriteByHitId(hitId)
+    fun setCategory(newCategory: String){
+        category=newCategory
+        fetchImages()
     }
 
     private fun fetchImages(){
         viewModelScope.launch(Dispatchers.IO){
             pixabayRepository.getImages("39753212-16e407a474df1977842acb508",pageNo,category)
         }
-    }
-    fun setCategory(newCategory: String){
-        category=newCategory
-        fetchImages()
     }
 
     val images:LiveData<PixabayList>

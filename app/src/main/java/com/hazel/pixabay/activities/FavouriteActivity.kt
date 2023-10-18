@@ -39,6 +39,8 @@ class FavouriteActivity : AppCompatActivity() {
 
             adapter.setOnFavClickListener(object : FavouriteAdapter.FavButtonClickListener{
                 override fun onFavButtonClick(item: FavouriteList) {
+                    Toast.makeText(this@FavouriteActivity,"Removed from Favourites",Toast.LENGTH_SHORT).show()
+                    mainViewModel.setFav(item.id)
                     mainViewModel.deleteFav(item.favId)
                 }
             })

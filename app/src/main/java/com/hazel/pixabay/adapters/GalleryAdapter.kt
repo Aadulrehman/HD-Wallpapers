@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class galleryAdapter(private val dataList: ArrayList<Hit>, private val viewModel:MainViewModel):RecyclerView.Adapter<galleryAdapter.ViewHolder>() {
+class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<galleryAdapter.ViewHolder>() {
 
     private var listener: OnItemClickListener?=null
     private var favBtnListener: galleryAdapter.FavButtonClickListener? = null
@@ -46,38 +46,33 @@ class galleryAdapter(private val dataList: ArrayList<Hit>, private val viewModel
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem=dataList[position]
-        holder.bind(currentItem,position)
+        holder.bind(currentItem)
 
         holder.itemView.setOnClickListener {
             listener?.onItemClick(currentItem)
         }
-
     }
     inner class ViewHolder(private val binding: GalleryLayoutBinding) :RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Hit, position: Int) {
-
-            setFavBtn(item.id)
+        fun bind(item: Hit) {
 
             Picasso.get().load(item.webformatURL).into(binding.ivImage)
             binding.hit=item
+            setFavButton(item)
 
             binding.ivFav.setOnClickListener{
                 favBtnListener?.onFavButtonClick(item)
-                setFavBtn(item.id)
-                notifyItemChanged(position)
+                setFavButton(item)
+            }
+        }
+        private fun setFavButton(item:Hit){
+            if(item.isFav){
+                binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
+            }
+            else{
+                binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
             }
         }
 
-        private fun setFavBtn(id:Int){
-            CoroutineScope(Dispatchers.IO).launch {
-                val isFav=viewModel.findFavById(id)
-                withContext(Dispatchers.Main){
-                    isFav?.let {
-                        binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
-                    } ?: binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
-                }
-            }
-        }
     }
 
 }

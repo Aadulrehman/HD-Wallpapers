@@ -3,8 +3,10 @@ package com.hazel.pixabay.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager= GridLayoutManager(this,2)
 
         mainViewModel.images.observe(this, Observer {
-            val adapter = galleryAdapter(it.hits as ArrayList<Hit>,mainViewModel)
+
+            val adapter = galleryAdapter(it.hits as ArrayList<Hit>)
             recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : galleryAdapter.OnItemClickListener {
@@ -49,6 +52,13 @@ class MainActivity : AppCompatActivity() {
             })
             adapter.setOnFavClickListener(object: galleryAdapter.FavButtonClickListener{
                 override fun onFavButtonClick(hit: Hit) {
+                    if(hit.isFav){
+                        Toast.makeText(this@MainActivity,"Removed from Favourites",Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(this@MainActivity,"Added to Favourites",Toast.LENGTH_SHORT).show()
+                    }
+                    mainViewModel.setFav(hit.id)
                     mainViewModel.insertFav(hit)
                 }
             })
@@ -62,9 +72,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             selectedButton?.setBackgroundResource(R.drawable.button_not_selected)
         }
-
         showCategories()
-
     }
 
     private fun showCategories(){
