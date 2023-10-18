@@ -25,19 +25,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="400dp">
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_view"
+                <ImageView
+                    android:id="@+id/animatedProgressImage"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    app:shimmer_duration="1000"
-                    app:shimmer_auto_start="true">
-                    <TextView
-                        android:id="@+id/ivShimer"
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:background="@color/mud"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/progress_animation" />
 
-                </com.facebook.shimmer.ShimmerFrameLayout>
                 <com.ortiz.touchview.TouchImageView
                     android:id="@+id/ivImage"
                     android:layout_width="match_parent"
