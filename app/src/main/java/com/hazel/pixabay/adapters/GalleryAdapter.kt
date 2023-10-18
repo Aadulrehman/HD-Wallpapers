@@ -57,6 +57,24 @@ class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<
     inner class ViewHolder(private val binding: GalleryLayoutBinding) :RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Hit) {
 
+            setShimmer(item)
+            binding.hit=item
+            setFavButton(item)
+
+            binding.ivFav.setOnClickListener{
+                favBtnListener?.onFavButtonClick(item)
+                setFavButton(item)
+            }
+        }
+        private fun setFavButton(item:Hit){
+            if(item.isFav){
+                binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
+            }
+            else{
+                binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
+            }
+        }
+        private fun setShimmer(item: Hit){
             binding.shimmerView.startShimmer()
             binding.ivImage.visibility = View.GONE
             binding.shimmerView.visibility = View.VISIBLE
@@ -73,21 +91,6 @@ class galleryAdapter(private val dataList: ArrayList<Hit>):RecyclerView.Adapter<
                     binding.ivImage.visibility = View.VISIBLE
                 }
             })
-            binding.hit=item
-            setFavButton(item)
-
-            binding.ivFav.setOnClickListener{
-                favBtnListener?.onFavButtonClick(item)
-                setFavButton(item)
-            }
-        }
-        private fun setFavButton(item:Hit){
-            if(item.isFav){
-                binding.ivFav.setImageResource(R.drawable.baseline_favorite_24)
-            }
-            else{
-                binding.ivFav.setImageResource(R.drawable.baseline_favorite_border_24)
-            }
         }
 
     }
