@@ -53,7 +53,6 @@ class FavouriteActivity : AppCompatActivity() {
                     intent.putExtra("HitData", hit)
                     startActivity(intent)
                 }
-
             })
         })
     }

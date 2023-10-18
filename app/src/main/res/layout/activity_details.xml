@@ -22,12 +22,30 @@
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
 
-            <com.ortiz.touchview.TouchImageView
-                android:id="@+id/ivImage"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:scaleType="centerCrop"
-                android:src="@color/background" />
+                android:layout_height="400dp">
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    app:shimmer_duration="1000"
+                    app:shimmer_auto_start="true">
+                    <TextView
+                        android:id="@+id/ivShimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:background="@color/mud"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.ortiz.touchview.TouchImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/background" />
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
