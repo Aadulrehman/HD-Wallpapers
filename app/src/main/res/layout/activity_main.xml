@@ -23,31 +23,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HD Wallpapers"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/onadia"/>
+                android:fontFamily="@font/sunbathe"/>
 
             <Button
                 android:id="@+id/btnFav"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/baseline_favorite_24"
-                android:layout_marginLeft="73dp"
+                android:layout_marginLeft="120dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/purple_200"
                 tools:ignore="MissingConstraints" />
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/baseline_arrow_forward_ios_24"
-                android:layout_marginTop="9dp"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/purple_200"
-                tools:ignore="MissingConstraints" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,16 +60,40 @@
                     android:orientation="horizontal">
                 </LinearLayout>
             </HorizontalScrollView>
-
         </LinearLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/bottomNavigation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/bottom_background"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="15dp"
+            android:elevation="2dp"
+            app:menu="@menu/bottom_menu"
+            app:itemIconSize="50dp"
+            app:itemIconTint="@drawable/item_selector"
+            app:labelVisibilityMode="unlabeled">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="110dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

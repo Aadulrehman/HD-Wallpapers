@@ -21,6 +21,15 @@ class MainViewModel(private val pixabayRepository: PixabayRepository):ViewModel(
         pageNo++
         fetchImages()
     }
+    fun onBackButtonClick(){
+        if(pageNo>=2){
+            pageNo--
+            fetchImages()
+        }
+    }
+    fun resetButtonCLick(){
+        pageNo=1
+    }
     fun insertFav(hit: Hit){
         val newFav=FavouriteList(0,hit.comments,hit.downloads,hit.hitId,hit.id,hit.largeImageURL,hit.likes,hit.tags,hit.views,hit.webformatURL)
         viewModelScope.launch(Dispatchers.IO) {

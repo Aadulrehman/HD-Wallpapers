@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hazel.pixabay.HitApplication
 import com.hazel.pixabay.R
 import com.hazel.pixabay.databinding.ActivityMainBinding
@@ -39,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager= GridLayoutManager(this,2)
 
         mainViewModel.images.observe(this, Observer {
-
             val adapter = galleryAdapter(it.hits as ArrayList<Hit>)
             recyclerView.adapter = adapter
 
@@ -63,16 +64,16 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         })
-        binding.btnNext.setOnClickListener{
-            mainViewModel.onNextButtonClick()
-        }
 
         binding.btnFav.setOnClickListener {
             val intent = Intent(this@MainActivity, FavouriteActivity::class.java)
             startActivity(intent)
             selectedButton?.setBackgroundResource(R.drawable.button_not_selected)
+            binding.bottomNavigation.selectedItemId=R.id.back
+            mainViewModel.resetButtonCLick()
         }
         showCategories()
+        navigateBottomNavigation()
     }
 
     private fun showCategories(){
@@ -88,15 +89,25 @@ class MainActivity : AppCompatActivity() {
             textBtn.setOnClickListener {
                 mainViewModel.setCategory(categoryArray[i])
                 selectButton(textBtn)
+                mainViewModel.resetButtonCLick()
+                binding.bottomNavigation.selectedItemId=R.id.back
             }
             binding.buttonContainer.addView(textBtn,params)
         }
     }
-
     private fun selectButton(button: TextView) {
         selectedButton?.setBackgroundResource(R.drawable.button_not_selected)
         button.setBackgroundResource(R.drawable.button_selected)
         selectedButton = button
+    }
+    private fun navigateBottomNavigation(){
+        binding.bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.back -> mainViewModel.onBackButtonClick()
+                R.id.next -> mainViewModel.onNextButtonClick()
+            }
+            true
+        }
     }
 
 }

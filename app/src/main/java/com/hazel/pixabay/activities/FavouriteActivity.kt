@@ -48,7 +48,7 @@ class FavouriteActivity : AppCompatActivity() {
 
             adapter.setOnItemClickListener(object : FavouriteAdapter.OnItemClickListener{
                 override fun onItemClick(fav: FavouriteList) {
-                    val hit=Hit(0,0,fav.comments,fav.downloads,fav.id,0,0,0,fav.largeImageURL,fav.likes,"0",0,"0",0,fav.tags,"0","0","0",0,fav.views,true,0,fav.webformatURL,0)
+                    val hit=Hit(fav.hitId,0,fav.comments,fav.downloads,fav.id,0,0,0,fav.largeImageURL,fav.likes,"0",0,"0",0,fav.tags,"0","0","0",0,fav.views,true,0,fav.webformatURL,0)
                     val intent = Intent(this@FavouriteActivity, DetailsActivity::class.java)
                     intent.putExtra("HitData", hit)
                     startActivity(intent)
