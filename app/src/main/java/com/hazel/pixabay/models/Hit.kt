@@ -26,6 +26,7 @@ data class Hit(
     val userImageURL: String,
     val user_id: Int,
     val views: Int,
+    var isFav:Boolean,
     val webformatHeight: Int,
     val webformatURL: String,
     val webformatWidth: Int

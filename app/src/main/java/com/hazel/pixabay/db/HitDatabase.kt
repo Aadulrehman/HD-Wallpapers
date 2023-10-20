@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.hazel.pixabay.models.FavouriteList
 import com.hazel.pixabay.models.Hit
 
-@Database(entities = [Hit::class, FavouriteList::class], version = 4)
+@Database(entities = [Hit::class, FavouriteList::class], version = 5)
 abstract class HitDatabase:RoomDatabase() {
     abstract fun hitDao():hitDao
     abstract fun favDao():favouritesDao

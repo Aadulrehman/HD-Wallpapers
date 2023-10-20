@@ -56,6 +56,8 @@ dependencies {
 
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     def lifecycle_version = "2.6.2"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
