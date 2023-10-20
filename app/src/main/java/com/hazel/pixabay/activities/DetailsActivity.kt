@@ -34,7 +34,7 @@ class DetailsActivity : AppCompatActivity() {
 
     }
     private fun setData(){
-          data = intent.getSerializableExtra("HitData") as Hit
+          data = intent.getSerializableExtra(resources.getString(R.string.dataTag)) as Hit
           binding.hit=data
           setShimmer()
           setFavButton()
@@ -68,14 +68,14 @@ class DetailsActivity : AppCompatActivity() {
             mainViewModel.insertFav(data)
             mainViewModel.setFav(data.id)
             binding.ibFav.setImageResource(R.drawable.baseline_favorite_border_24)
-            Toast.makeText(this@DetailsActivity,"Deleted from Favourites",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DetailsActivity,resources.getString(R.string.deleteMessage),Toast.LENGTH_SHORT).show()
         }
         else{
             data.isFav=true
             mainViewModel.insertFav(data)
             mainViewModel.setFav(data.id)
             binding.ibFav.setImageResource(R.drawable.baseline_favorite_24)
-            Toast.makeText(this@DetailsActivity,"Added to Favourites",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DetailsActivity,resources.getString(R.string.addMessage),Toast.LENGTH_SHORT).show()
         }
     }
 }

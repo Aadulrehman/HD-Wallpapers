@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
             adapter.setOnFavClickListener(object: galleryAdapter.FavButtonClickListener{
                 override fun onFavButtonClick(hit: Hit) {
                     if(hit.isFav){
-                        Toast.makeText(this@MainActivity,"Removed from Favourites",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity,resources.getString(R.string.deleteMessage),Toast.LENGTH_SHORT).show()
                     }
                     else{
-                        Toast.makeText(this@MainActivity,"Added to Favourites",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity,resources.getString(R.string.addMessage),Toast.LENGTH_SHORT).show()
                     }
                     mainViewModel.setFav(hit.id)
                     mainViewModel.insertFav(hit)

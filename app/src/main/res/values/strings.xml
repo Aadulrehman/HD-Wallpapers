@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Pixabay</string>
+    <string name="deleteMessage">Deleted from Favourites</string>
+    <string name="addMessage">Added to Favourites</string>
+    <string name="dataTag">HitData</string>
     <string-array name="category_list">
         <item>backgrounds</item>
         <item>fashion</item>

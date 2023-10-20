@@ -38,7 +38,7 @@ class FavouriteActivity : AppCompatActivity() {
 
             adapter.setOnFavClickListener(object : FavouriteAdapter.FavButtonClickListener{
                 override fun onFavButtonClick(item: FavouriteList) {
-                    Toast.makeText(this@FavouriteActivity,"Removed from Favourites",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@FavouriteActivity,resources.getString(R.string.deleteMessage),Toast.LENGTH_SHORT).show()
                     mainViewModel.setFav(item.id)
                     mainViewModel.deleteFav(item.favId)
                 }
@@ -48,7 +48,7 @@ class FavouriteActivity : AppCompatActivity() {
                 override fun onItemClick(fav: FavouriteList) {
                     val hit= Hit(fav.hitId,0,fav.comments,fav.downloads,fav.id,0,0,0,fav.largeImageURL,fav.likes,"0",0,"0",0,fav.tags,"0","0","0",0,fav.views,true,0,fav.webformatURL,0)
                     val intent = Intent(this@FavouriteActivity, DetailsActivity::class.java)
-                    intent.putExtra("HitData", hit)
+                    intent.putExtra(resources.getString(R.string.dataTag), hit)
                     startActivity(intent)
                 }
             })
