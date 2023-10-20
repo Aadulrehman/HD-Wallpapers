@@ -49,9 +49,9 @@ To get started with HD Wallpapers App, follow these steps:
 4. **Offline Mode**: Enjoy previously viewed wallpapers even when you're offline.
 
  <p align="center">
-<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/d95846d9-628f-45db-a770-ab36713eae99" alt="All Images" width="300" />
-<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/ebc1167a-444b-41c0-b992-30164dc470af" alt="All Images" width="300" />
-<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/8b9de08d-d6fb-4646-b201-b9436d6a4210" alt="All Images" width="300" />
+<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/d95846d9-628f-45db-a770-ab36713eae99" alt="All Images" width="250" />
+<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/ebc1167a-444b-41c0-b992-30164dc470af" alt="All Images" width="250" />
+<img src="https://github.com/Aadulrehman/HD-Wallpapers/assets/100299631/8b9de08d-d6fb-4646-b201-b9436d6a4210" alt="All Images" width="250" />
  </p>
 
 
