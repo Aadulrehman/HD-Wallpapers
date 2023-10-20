@@ -44,7 +44,7 @@ To get started with HD Wallpapers App, follow these steps:
 
 2. **Browse and Discover**: Start browsing and discovering high-definition wallpapers from various categories.
 
-3. **Add to Favorites**: Save your favorite wallpapers by clicking the "Add to Favorites" button.
+3. **Add to Favorites**: Save your favorite wallpapers by clicking the "Heart" icon.
 
 4. **Offline Mode**: Enjoy previously viewed wallpapers even when you're offline.
 
